@@ -5,7 +5,11 @@ require './Game_Model.php';
 require './fillGameField.php';
 require './fiilTemplateAndGetPage.php';
 
-if (isset($_SESSION['game-state'])) {
+if ($_POST['start']) {
+    $game = new Model_Game();
+    unset($_SESSION['game-state']);
+    unset($_SESSION['counter']);
+} else if (isset($_SESSION['game-state'])) {
     $game = new Model_Game($_SESSION['game-state']);
 } else {
     $game = new Model_Game();
@@ -15,9 +19,6 @@ $pageTemplate = file_get_contents('./game-page-template.php');
 
 $turn = ($_SESSION['counter'] % 2 == 0) ? "<h5>Ход первого игрока!</h5>" : "<h5>Ход второго игрока!</h5>";
 
-// если в сессию передано игровове состояние
-// то игра либо будет завершена
-// либо продолжается
 if (isset($_SESSION['game-state'])) {
     $_SESSION['counter']++;
 
@@ -36,20 +37,15 @@ if (isset($_SESSION['game-state'])) {
 
         $_SESSION['game-state'] = $game->getState();
     }
-
-// если в посте есть старт
-// то игра только началась
+    
 } else if (isset($_POST['start']) && $_POST['start'] === 'on') {
     $_SESSION['counter'] = 1;
 
-    $page = fillTemplateAndGetPage('РЕСТАРТ', $turn, '', true);
+    $page = fillTemplateAndGetPage('РЕСТАРТ',$turn, '', true);
 
     $_SESSION['game-state'] = $game->getState();
-// иначе получаем дефолтную страницу
 } else {
     $page = fillTemplateAndGetPage();
 }
 
 print($page);
-
-?>

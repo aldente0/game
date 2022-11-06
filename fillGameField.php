@@ -11,7 +11,7 @@ function fillGameField(array $gameState, bool $isGameActive = false): string
             } else if ($isGameActive) {
                 $gameField .= "<button class=\"game-field__pos\" name=\"position\" value=\"$i,$j\">{$gameState[$i][$j]}</button>";
             } else {
-                $gameField .= "<button class=\"game-field__pos\" name=\"position\" value=\"$i,$j\" disabled></button>";
+                $gameField .= "<button class=\"game-field__pos\" name=\"position\" value=\"$i,$j\" disabled>{$gameState[$i][$j]}</button>";
             }
         }
     }
