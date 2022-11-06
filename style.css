@@ -1,0 +1,43 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.start {
+    margin: 30px 0 30px 0;
+    background-color: rgb(27, 112, 133);
+    width: 150px;
+    height: 70px;
+    border-radius: 8px;
+    color: aliceblue;
+    font-size: 25px;
+}
+
+
+.game-field {
+    display: flex;
+    width: 80vh;
+    height: 80vh;
+    max-width: 720px;
+    max-height: 720px;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+}
+
+.game-field__pos {
+    width: 33%;
+    height: 33%;
+    border-radius: 8px;
+    background-color: rgb(27, 112, 133);
+    font-size: 200px;
+    color: aliceblue;
+}
+
+@media (min) {
+    
+}
